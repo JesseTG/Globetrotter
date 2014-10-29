@@ -3,45 +3,43 @@ using System.Collections;
 
 public class RotationControl : MonoBehaviour
 {
-    private Vector3 _mouseDown;
-    private Vector3 _worldClick;
-
+    private Vector2 _speed;
     [Tooltip("The maximum speed at which the world should rotate")]
-    public float Speed = 1;
+    public float
+        Speed = 1;
     [Tooltip("What axes should the world rotate around when the mouse is dragged horizontally or vertically?")]
     public RotationMode
         RotationMode = RotationMode.XY;
+    public float RotationDecay = 1;
 
-    void OnMouseDown ()
-    {
-        _mouseDown = Input.mousePosition;
-        _worldClick = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-    }
-
-    void OnMouseUp ()
-    {
-        _mouseDown.Set (float.NaN, float.NaN, float.NaN);
-        _worldClick = _mouseDown;
-    }
-
-    void Update ()
+    void FixedUpdate ()
     {
         if (Input.GetMouseButton (0)) {
             float h = Input.GetAxis ("Mouse X");
             float v = Input.GetAxis ("Mouse Y");
-            this.transform.RotateAround (
+            this._speed.x = h * -Speed * Time.deltaTime;
+            this._speed.y = v * Speed * Time.deltaTime;
+        } else {
+            this._speed = Vector2.Lerp (this._speed, Vector2.zero, Time.deltaTime * RotationDecay);
+        }
+
+        // TODO: Store the speed, affect the speed in here
+        // Apply the speed regardless, but affect the speed in the get mouse block
+        // Lerp the speed to zero
+        this.transform.RotateAround (
                 Vector3.zero, 
                 this.RotationMode.HorizontalAxis (Camera.main.transform), 
-                h * -Speed * Time.deltaTime
-            );
+                this._speed.x
+        );
 
 
-            this.transform.RotateAround (
+        this.transform.RotateAround (
                 Vector3.zero, 
                 this.RotationMode.VerticalAxis (Camera.main.transform),
-                v * Speed * Time.deltaTime
-            );
+                this._speed.y
+        );
 
-        }
+
+
     }
 }
