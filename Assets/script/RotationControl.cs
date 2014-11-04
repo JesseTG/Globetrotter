@@ -14,18 +14,15 @@ public class RotationControl : MonoBehaviour
 
     void FixedUpdate ()
     {
-        if (Input.GetMouseButton (0)) {
+        if (Input.GetButton ("Fire1")) {
             float h = Input.GetAxis ("Mouse X");
             float v = Input.GetAxis ("Mouse Y");
-            this._speed.x = h * -Speed * Time.deltaTime;
-            this._speed.y = v * Speed * Time.deltaTime;
+            this._speed.x = h * -Speed;
+            this._speed.y = v * Speed;
         } else {
             this._speed = Vector2.Lerp (this._speed, Vector2.zero, Time.deltaTime * RotationDecay);
         }
 
-        // TODO: Store the speed, affect the speed in here
-        // Apply the speed regardless, but affect the speed in the get mouse block
-        // Lerp the speed to zero
         this.transform.RotateAround (
                 Vector3.zero, 
                 this.RotationMode.HorizontalAxis (Camera.main.transform), 
@@ -38,8 +35,12 @@ public class RotationControl : MonoBehaviour
                 this.RotationMode.VerticalAxis (Camera.main.transform),
                 this._speed.y
         );
+    }
 
-
-
+    void Update ()
+    {
+        if (Input.GetButtonDown ("Fire2")) {
+            this.RotationMode = this.RotationMode.Next ();
+        }
     }
 }

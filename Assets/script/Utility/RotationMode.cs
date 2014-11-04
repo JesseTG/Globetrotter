@@ -47,4 +47,22 @@ static class RotationModeExtensions
             return transform.right;
         }
     }
+
+    /// <summary>
+    /// Returns the next rotation mode in the cycle
+    /// </summary>
+    /// <param name="mode">Mode.</param>
+    public static RotationMode Next (this RotationMode mode)
+    {
+        switch (mode) {
+        case RotationMode.XY:
+            return RotationMode.XZ;
+        case RotationMode.XZ:
+            return RotationMode.YZ;
+        case RotationMode.YZ:
+            return RotationMode.XY;
+        default:
+            return RotationMode.XY;
+        }
+    }
 }
