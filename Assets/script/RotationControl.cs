@@ -9,7 +9,7 @@ public class RotationControl : MonoBehaviour
         Speed = 1;
     [Tooltip("What axes should the world rotate around when the mouse is dragged horizontally or vertically?")]
     public RotationMode
-        RotationMode = RotationMode.XY;
+        RotationMode = RotationMode.XZ;
     public float RotationDecay = 1;
 
     void FixedUpdate ()
@@ -17,8 +17,8 @@ public class RotationControl : MonoBehaviour
         if (Input.GetButton ("Fire1")) {
             float h = Input.GetAxis ("Mouse X");
             float v = Input.GetAxis ("Mouse Y");
-            this._speed.x = h * -Speed;
-            this._speed.y = v * Speed;
+            this._speed.x = Mathf.Clamp (h * -Speed, -Speed, Speed);
+            this._speed.y = Mathf.Clamp (v * Speed, -Speed, Speed);
         } else {
             this._speed = Vector2.Lerp (this._speed, Vector2.zero, Time.deltaTime * RotationDecay);
         }
