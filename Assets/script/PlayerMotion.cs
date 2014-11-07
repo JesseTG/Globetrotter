@@ -4,8 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMotion : MonoBehaviour
 {
-
     public float Speed = 1;
+    public string WallTag = "Wall";
     private PlayerDirection _direction;
 
     public PlayerDirection Direction {
@@ -32,9 +32,15 @@ public class PlayerMotion : MonoBehaviour
     {
         this.transform.up = this.transform.position.normalized;
 
-        Vector3 r = Vector3.Cross (Vector3.zero, this.transform.position);
-//        this.rigidbody.position += this.Direction.DirectionVector (this.transform) * Speed * Time.deltaTime;
         this.rigidbody.velocity = this.Direction.DirectionVector (this.transform) * Speed;
+        // TODO: Make this play nicely with gravity
+    }
+
+    void OnTriggerEnter (Collider other)
+    {
+        if (other.gameObject.tag == WallTag) {
+            Application.LoadLevel(Application.loadedLevel);
+        }
     }
 
     // For player travelling up walls: Slant the walls towards the player slightly (or at least the colliders)
