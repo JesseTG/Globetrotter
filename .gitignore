@@ -13,8 +13,11 @@
 /*.pidb
 /*.booproj
 
-#Unity3D Generated File On Crash Reports
+# Unity3D Generated File On Crash Reports
 sysinfo.txt
 
 # Prototype textures readme info
 Assets/prototype_textures/readme.*
+
+# Backups
+*.blend[123]
