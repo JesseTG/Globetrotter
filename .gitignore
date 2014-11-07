@@ -21,3 +21,4 @@ Assets/prototype_textures/readme.*
 
 # Backups
 *.blend[123]
+*.blend[123].meta
