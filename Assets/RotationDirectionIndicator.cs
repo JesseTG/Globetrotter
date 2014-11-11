@@ -10,7 +10,9 @@ public class RotationDirectionIndicator : MonoBehaviour
     [Tooltip("The material used to render this graphics when its rotation mode is being used")]
     public Material
         Selected;
-    public Material NotSelected;
+    [Tooltip("The material used to render this graphics when its rotation mode is NOT being used")]
+    public Material
+        NotSelected;
     private Image _image;
 
     void Awake ()
