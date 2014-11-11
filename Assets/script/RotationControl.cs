@@ -4,6 +4,7 @@ using System.Collections;
 public class RotationControl : MonoBehaviour
 {
     private Vector2 _speed;
+	private bool IsPaused = false;
     [Tooltip("The maximum speed at which the world should rotate")]
     public float
         Speed = 1;
@@ -43,4 +44,8 @@ public class RotationControl : MonoBehaviour
             this.RotationMode = this.RotationMode.Next ();
         }
     }
+
+	void OnPauseGame() {
+		IsPaused = true;
+	}
 }

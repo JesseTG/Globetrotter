@@ -45,4 +45,8 @@ public class PlayerMotion : MonoBehaviour
 
     // For player travelling up walls: Slant the walls towards the player slightly (or at least the colliders)
     // Also, try putting the beginning of the capsule slope right at the surface
+
+	void OnPauseGame() {
+		Speed = 0;
+	}
 }
