@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
+using System.Reflection;
 using System.Collections;
+using System;
+using UnityEngine.Events;
 
 public class RotationControl : MonoBehaviour
 {
@@ -12,6 +15,11 @@ public class RotationControl : MonoBehaviour
     public RotationMode
         RotationMode = RotationMode.XZ;
     public float RotationDecay = 1;
+
+    [Tooltip("The GameObjects to be notified when the user changes the rotation mode. Each GameObject must have a" + 
+             " method called \"OnRotationModeChanged(string, RotationMode, RotationMode)\".")]
+ 
+    public RotationModeChangedEvent OnRotationModeChanged;
 
     void FixedUpdate ()
     {
@@ -41,7 +49,9 @@ public class RotationControl : MonoBehaviour
     void Update ()
     {
         if (Input.GetButtonDown ("Fire2")) {
+            RotationMode old = this.RotationMode;
             this.RotationMode = this.RotationMode.Next ();
+            this.OnRotationModeChanged.Invoke(old, this.RotationMode);
         }
     }
 
@@ -49,3 +59,6 @@ public class RotationControl : MonoBehaviour
 		IsPaused = true;
 	}
 }
+
+[Serializable]
+public class RotationModeChangedEvent : UnityEvent<RotationMode, RotationMode> {}
