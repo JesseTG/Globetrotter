@@ -1,15 +1,69 @@
 fileFormatVersion: 2
-guid: 363eb37bf33e8754f88710d5286dbdcb
+guid: 1217fbd5a858f2244aa80213bcd91ab1
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Antenna
+    100004: antenna
+    100006: Armature
+    100008: arms
+    100010: body
+    100012: Clavical_L
+    100014: Clavical_R
+    100016: eyes
+    100018: ForeArm_L
+    100020: ForeArm_R
+    100022: Hand_L
+    100024: Hand_R
+    100026: hands
+    100028: Head
+    100030: roller
+    100032: shoulders
+    100034: Torso
+    100036: UpperArm_L
+    100038: UpperArm_R
     400000: //RootNode
+    400002: Antenna
+    400004: antenna
+    400006: Armature
+    400008: arms
+    400010: body
+    400012: Clavical_L
+    400014: Clavical_R
+    400016: eyes
+    400018: ForeArm_L
+    400020: ForeArm_R
+    400022: Hand_L
+    400024: Hand_R
+    400026: hands
+    400028: Head
+    400030: roller
+    400032: shoulders
+    400034: Torso
+    400036: UpperArm_L
+    400038: UpperArm_R
     2300000: //RootNode
+    2300002: roller
     3300000: //RootNode
+    3300002: roller
     4300000: Cylinder
+    4300002: hands
+    4300004: arms
+    4300006: antenna
+    4300008: body
+    4300010: eyes
+    4300012: shoulders
+    4300014: roller
     7400000: Default Take
+    7400002: ArmatureAction
     9500000: //RootNode
+    13700000: antenna
+    13700002: arms
+    13700004: body
+    13700006: eyes
+    13700008: hands
+    13700010: shoulders
   materials:
     importMaterials: 1
     materialName: 0
