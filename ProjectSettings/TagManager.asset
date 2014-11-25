@@ -5,6 +5,7 @@ TagManager:
   tags:
   - Wall
   - PauseScreen
+  - JumpPad
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
