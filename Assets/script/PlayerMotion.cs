@@ -5,10 +5,10 @@ using System;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMotion : MonoBehaviour
 {
-    public float Speed = 1;
     public float Acceleration = 20;
-    public string WallTag = "Wall";
     public PlayerDirection InitialDirection = PlayerDirection.North;
+    public string WallTag = "Wall";
+
     private PlayerDirection _direction;
 
     public PlayerDirection Direction {
@@ -29,6 +29,9 @@ public class PlayerMotion : MonoBehaviour
     void Awake ()
     {
         this.Direction = this.InitialDirection;
+        this.transform.Rotate(this.transform.up, 90);
+        // I don't know why I need to rotate 90 degrees on startup; it apparently
+        // has to do with the way I set the orientation each physics step
     }
     
     void FixedUpdate ()
@@ -71,7 +74,6 @@ public class PlayerMotion : MonoBehaviour
 
     void OnPauseGame ()
     {
-        Speed = 0;
     }
 }
 
