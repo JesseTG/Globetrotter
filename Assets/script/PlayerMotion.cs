@@ -34,19 +34,34 @@ public class PlayerMotion : MonoBehaviour
     void FixedUpdate ()
     {
         this.transform.up = this.transform.position.normalized;
-        this.rigidbody.AddForce(this.transform.forward * this.Acceleration * this.rigidbody.mass);
-        this.rigidbody.velocity = Vector3.ClampMagnitude(this.rigidbody.velocity, Speed);
-        // TODO: Make this play nicely with gravity
+        Vector3 accel = this.gameObject.transform.forward * this.Acceleration;
+
+        this.rigidbody.AddRelativeForce(0, 0, this.Acceleration, ForceMode.Acceleration);
+
+        #if UNITY_EDITOR
+
+        Debug.DrawRay (
+            this.transform.position, 
+            this.transform.forward * Vector3.Dot (rigidbody.velocity, accel), 
+            Color.red,
+            0, 
+            false
+            );
+
+        Debug.DrawRay(this.transform.position, this.rigidbody.velocity, Color.cyan, 0, false);
+        Debug.DrawRay(this.transform.position, accel, Color.green, 0, false);
+        #endif
     }
 
     void OnTriggerEnter (Collider other)
     {
         if (other.gameObject.tag == WallTag) {
-            Application.LoadLevel(Application.loadedLevel);
+            Application.LoadLevel (Application.loadedLevel);
         }
     }
 
-    public void ChangeDirection(PlayerDirection old, PlayerDirection new_) {
+    public void ChangeDirection (PlayerDirection old, PlayerDirection new_)
+    {
         this.Direction = new_;
     }
    
@@ -54,9 +69,10 @@ public class PlayerMotion : MonoBehaviour
     // For player travelling up walls: Slant the walls towards the player slightly (or at least the colliders)
     // Also, try putting the beginning of the capsule slope right at the surface
 
-	void OnPauseGame() {
-		Speed = 0;
-	}
+    void OnPauseGame ()
+    {
+        Speed = 0;
+    }
 }
 
 

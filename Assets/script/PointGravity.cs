@@ -13,6 +13,7 @@ public class PointGravity : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		this.rigidbody.AddForce((this.Center - this.transform.position).normalized * _gravity * this.rigidbody.mass);
+		//this.rigidbody.AddForce((this.Center - this.transform.position).normalized * _gravity, ForceMode.Acceleration);
+        this.rigidbody.AddRelativeForce(0, -this._gravity, 0, ForceMode.Acceleration);
 	}
 }
