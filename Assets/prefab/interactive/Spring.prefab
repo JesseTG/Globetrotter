@@ -95,10 +95,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad9796665d1f6354e935aca8ffb7acdf, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e55935dbc6af314da1060b93c3d85b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 10
+  JumpForce: 15
   PlayerTag: Player
 --- !u!1001 &100100000
 Prefab:
